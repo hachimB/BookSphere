@@ -1,4 +1,4 @@
-import { mongoose } from 'mongoose';
+const mongoose = require('mongoose');
 
 class DBClient {
   constructor() {
@@ -35,4 +35,4 @@ class DBClient {
   }
 }
 
-export default DBClient;
+module.exports = DBClient;
