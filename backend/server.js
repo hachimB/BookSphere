@@ -1,8 +1,13 @@
 import express from 'express';
-import router from './routes/index.js';
+import index from './routes/index.js';
 
 const app = express();
-app.use(router);
-app.listen(5000);
+const port = process.env.PORT || 8000;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use('/', index);
+
+app.listen(port, () => console.log(`The server is running on port ${port}`));
 
 export default app;
