@@ -1,8 +1,9 @@
 import express from 'express';
-import AppController from '../controllers/AppController.js'; 
+import { getBooks, postBooks, putBooks, deleteBooks} from '../controllers/bookController.js'; 
 
 const router = express.Router();
 
-router.get('/', AppController.getHomepage);
+router.route('/books').get(getBooks).post(postBooks);
+router.route('/books/:id').put(putBooks).delete(deleteBooks);
 
 export default router;
