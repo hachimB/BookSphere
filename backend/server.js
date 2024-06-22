@@ -2,6 +2,7 @@
 
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 const { connectDB, seedDatabase } = require('./utils/db');
 const routes = require('./routes');
 
@@ -16,6 +17,7 @@ seedDatabase();
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 // Routes
