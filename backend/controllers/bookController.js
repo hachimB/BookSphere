@@ -1,15 +1,14 @@
-export const getBooks = (req, res) => {
-  return res.status(200).send('Hello world!');
-}
+// controllers/bookController.js
 
-export const postBooks = (req, res) => {
-  return res.status(200).send('Hello world! Here the post Method');
-}
+const Book = require('../models/book');
 
-export const putBooks = (req, res) => {
-  return res.status(200).send(`update the book with the id = ${req.params.id}` );
-}
-
-export const deleteBooks = (req, res) => {
-  return res.status(200).send(`delete the book with the id = ${req.params.id}`);
-}
+// Function to fetch all books
+exports.getAllBooks = async (req, res) => {
+    try {
+        const allBooks = await Book.find();
+        res.json(allBooks);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};

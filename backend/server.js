@@ -1,13 +1,27 @@
-import express from 'express';
-import index from './routes/index.js';
+// server.js
+
+const express = require('express');
+const cors = require('cors');
+const { connectDB, seedDatabase } = require('./utils/db');
+const routes = require('./routes');
 
 const app = express();
-const port = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 
+// Connect to MongoDB
+connectDB();
+
+// Seed database on server startup
+seedDatabase();
+
+// Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use('/', index);
+app.use(cors());
 
-app.listen(port, () => console.log(`The server is running on port ${port}`));
+// Routes
+app.use(routes);
 
-export default app;
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

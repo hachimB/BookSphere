@@ -1,67 +1,22 @@
-import mongoose from 'mongoose';
-import Book from '../models/book';
-import dotenv from 'dotenv';
+// utils/db.js
 
-dotenv.config();
+const mongoose = require('mongoose');
 
-class BookDb {
-  constructor() {
-    const host = process.env.MONGO_HOST || 'localhost';
-    const port = process.env.MONGO_PORT || '5001';
-    const dbName = process.env.MONGO_DB || 'bookDb';
-
-    const mongoURI = `mongodb://${host}:${port}/${dbName}`;
-
-    mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-      .then(() => console.log('MongoDB connected...'))
-      .catch(err => console.log(err));
-  }
-
-  async createBook(bookData) {
+const connectDB = async () => {
     try {
-      const book = new Book(bookData);
-      await book.save();
-      return book;
+        await mongoose.connect('mongodb+srv://root:root@bookstorage.e16oshu.mongodb.net/?retryWrites=true&w=majority&appName=BookStorage', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('MongoDB connected successfully');
     } catch (error) {
-      throw new Error('Error creating book: ' + error.message);
+        console.error('MongoDB connection error:', error);
+        process.exit(1); // Exit process with failure
     }
-  }
+};
 
-  async getBookById(bookId) {
-    try {
-      const book = await Book.findById(bookId);
-      return book;
-    } catch (error) {
-      throw new Error('Error fetching book: ' + error.message);
-    }
-  }
+const seedDatabase = async () => {
+    // Your seeding logic here
+};
 
-  async getAllBooks() {
-    try {
-      const books = await Book.find();
-      return books;
-    } catch (error) {
-      throw new Error('Error fetching books: ' + error.message);
-    }
-  }
-
-  async updateBook(bookId, bookData) {
-    try {
-      const book = await Book.findByIdAndUpdate(bookId, bookData, { new: true });
-      return book;
-    } catch (error) {
-      throw new Error('Error updating book: ' + error.message);
-    }
-  }
-
-  async deleteBook(bookId) {
-    try {
-      await Book.findByIdAndDelete(bookId);
-      return { message: 'Book deleted successfully' };
-    } catch (error) {
-      throw new Error('Error deleting book: ' + error.message);
-    }
-  }
-}
-
-export default BookDb;
+module.exports = { connectDB, seedDatabase };
