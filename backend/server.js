@@ -2,7 +2,6 @@
 
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const { connectDB, seedDatabase } = require('./utils/db');
 const routes = require('./routes');
 

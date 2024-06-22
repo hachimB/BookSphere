@@ -31,3 +31,20 @@ exports.getABook = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+
+exports.deleteBook = async (req, res) => {
+  try {
+    if (!isValidObjectId(req.params.id)) {
+      return res.status(400).json({ error: 'Invalid ID' });
+    }
+    const bookToDelete = await Book.findByIdAndDelete(req.params.id);
+    if (!bookToDelete) {
+      return res.status(400).json({ error: 'Book not found' });
+    }
+    res.status(200).json({ message: 'Book successfully deleted '});
+  } catch {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
