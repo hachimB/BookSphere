@@ -1,26 +1,67 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+import mongoose from 'mongoose';
+import Book from '../models/book';
+import dotenv from 'dotenv';
 
-class MongooseConfig {
+dotenv.config();
+
+class BookDb {
   constructor() {
-    this.dbHost = process.env.DB_HOST || 'localhost';
-    this.dbPort = process.env.DB_PORT || '5001';
-    this.dbName = process.env.DB_NAME || 'book_db';
-    this.connect();
+    const host = process.env.MONGO_HOST || 'localhost';
+    const port = process.env.MONGO_PORT || '5001';
+    const dbName = process.env.MONGO_DB || 'bookDb';
+
+    const mongoURI = `mongodb://${host}:${port}/${dbName}`;
+
+    mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+      .then(() => console.log('MongoDB connected...'))
+      .catch(err => console.log(err));
   }
 
-  connect() {
-    mongoose.connect(`mongodb://${this.dbHost}:${this.dbPort}/${this.dbName}`, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+  async createBook(bookData) {
+    try {
+      const book = new Book(bookData);
+      await book.save();
+      return book;
+    } catch (error) {
+      throw new Error('Error creating book: ' + error.message);
+    }
+  }
 
-    const db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-    db.once('open', () => {
-      console.log('Connected to MongoDB');
-    });
+  async getBookById(bookId) {
+    try {
+      const book = await Book.findById(bookId);
+      return book;
+    } catch (error) {
+      throw new Error('Error fetching book: ' + error.message);
+    }
+  }
+
+  async getAllBooks() {
+    try {
+      const books = await Book.find();
+      return books;
+    } catch (error) {
+      throw new Error('Error fetching books: ' + error.message);
+    }
+  }
+
+  async updateBook(bookId, bookData) {
+    try {
+      const book = await Book.findByIdAndUpdate(bookId, bookData, { new: true });
+      return book;
+    } catch (error) {
+      throw new Error('Error updating book: ' + error.message);
+    }
+  }
+
+  async deleteBook(bookId) {
+    try {
+      await Book.findByIdAndDelete(bookId);
+      return { message: 'Book deleted successfully' };
+    } catch (error) {
+      throw new Error('Error deleting book: ' + error.message);
+    }
   }
 }
 
-module.exports = new MongooseConfig();
+export default BookDb;
