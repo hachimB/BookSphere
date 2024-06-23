@@ -9,6 +9,10 @@ const bookSchema = new mongoose.Schema({
     description: String,
     publishedYear: Number,
     price: Number,
-});
+},
+{
+  timestamps: true,
+}
+);
 
 module.exports = mongoose.model('Book', bookSchema);

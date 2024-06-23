@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const User = require('../models/user');
 
 
@@ -25,7 +26,9 @@ exports.registerUser = async (req, res) => {
     const user = await User.create({ name, email, password:  hashedPassword });
 
     if (user) {
-      return res.status(200).json({ message: 'sucessfully registered', _id: user.id, name: name, email: user.email }); 
+      return res.status(200).json({ message: 'sucessfully registered', _id: user.id, name: name, email: user.email, 
+        token: generateJWT(user._id)
+      }); 
     }
     else {
       return res.status(400).json({ error: 'User not registered' });
@@ -46,7 +49,9 @@ exports.authenticateUser = async (req, res) => {
       }
       const user = await User.findOne({ email });
       if (user && (await bcrypt.compare(password, user.password))) {
-        return res.status(200).json({ message: 'User signed in successfully', _id: user.id, name: user.name, email: user.email });
+        return res.status(200).json({ message: 'User signed in successfully', _id: user.id, name: user.name, email: user.email,
+            token: generateJWT(user._id)
+         });
       }
       else {
         return res.status(400).json({ error: 'Invalid email or password' });
@@ -67,4 +72,10 @@ exports.authenticateUser = async (req, res) => {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
+  }
+  
+  const generateJWT = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+      expiresIn: '30d',
+    });
   }

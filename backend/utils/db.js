@@ -1,10 +1,11 @@
 // utils/db.js
 
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb+srv://root:root@bookstorage.e16oshu.mongodb.net/?retryWrites=true&w=majority&appName=BookStorage', {
+        await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
