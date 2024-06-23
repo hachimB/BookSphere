@@ -61,3 +61,27 @@ exports.addBook = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+
+exports.updateBook = async (req, res) => {
+  try {
+    const bookId = req.params.id;
+    if (!isValidObjectId(bookId)) {
+      return res.status(400).json({ error: 'Invalid book ID' });
+    }
+
+    const updatedBook = await Book.findByIdAndUpdate(bookId, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!updatedBook) {
+      return res.status(404).json({ error: 'Book not found' });
+    }
+
+    res.json({ message: 'Book successfully updated', book: updatedBook });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
