@@ -28,6 +28,7 @@ const Books = () => {
             <p><strong>Author:</strong> {book.author}</p>
             <p><strong>Genre:</strong> {book.genre}</p>
             <p><strong>Description:</strong> {book.description}</p>
+            <p><strong>Published Year:</strong> {book.publishedYear}</p>
             <p><strong>Price:</strong> ${book.price}</p>
           </div>
         ))}
