@@ -2,7 +2,6 @@
 
 const Book = require('../models/book');
 const mongoose = require('mongoose');
-const books = require('../data');
 const { isValidObjectId } = mongoose;
 
 // Function to fetch all books
@@ -53,7 +52,6 @@ exports.deleteBook = async (req, res) => {
 
 exports.addBook = async (req, res) => {
   try {
-    req.body = books[0];
     const newBook = await Book.create(req.body);
     res.status(201).json({ message: 'Book successfully added', book: newBook });
   } catch (error) {
@@ -62,26 +60,18 @@ exports.addBook = async (req, res) => {
   }
 }
 
-
 exports.updateBook = async (req, res) => {
   try {
-    const bookId = req.params.id;
-    if (!isValidObjectId(bookId)) {
-      return res.status(400).json({ error: 'Invalid book ID' });
+    if (!isValidObjectId(req.params.id)) {
+      return res.status(400).json({ error: 'invalid ID'});
     }
-
-    const updatedBook = await Book.findByIdAndUpdate(bookId, req.body, {
-      new: true,
-      runValidators: true,
-    });
-
-    if (!updatedBook) {
-      return res.status(404).json({ error: 'Book not found' });
+    const bookToUpdate = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true, useFindAndModify: false });
+    if (!bookToUpdate) {
+      return res.status(400).json({ error: 'Book not found'});
     }
-
-    res.json({ message: 'Book successfully updated', book: updatedBook });
+    res.status(200).json({ message: 'Book successfully updated', book: bookToUpdate })
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error ' });
   }
-};
+}
