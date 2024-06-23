@@ -2,6 +2,7 @@
 
 const Book = require('../models/book');
 const mongoose = require('mongoose');
+const books = require('../data');
 const { isValidObjectId } = mongoose;
 
 // Function to fetch all books
@@ -52,17 +53,7 @@ exports.deleteBook = async (req, res) => {
 
 exports.addBook = async (req, res) => {
   try {
-    // if (!req.body.title ||!req.body.author ||!req.body.genre ||!req.body.description ||!req.body.price || !req.body.publishedYear) {
-    //   return res.status(400).json({ error: 'Missing required fields' });
-    // }
-    req.body = {
-        "title": "Example Book Title",
-        "author": "Author Name",
-        "genre": "Fiction",
-        "description": "This is a sample description of the book.",
-        "price": 19.99,
-        "publishedYear": 2021
-      }
+    req.body = books[0];
     const newBook = await Book.create(req.body);
     res.status(201).json({ message: 'Book successfully added', book: newBook });
   } catch (error) {
