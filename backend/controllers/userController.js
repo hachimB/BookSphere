@@ -25,7 +25,7 @@ exports.registerUser = async (req, res) => {
     const user = await User.create({ name, email, password:  hashedPassword });
 
     if (user) {
-      return res.status(200).json({ _id: user.id, name: name, email: user.email }); 
+      return res.status(200).json({ message: 'sucessfully registered', _id: user.id, name: name, email: user.email }); 
     }
     else {
       return res.status(400).json({ error: 'User not registered' });
