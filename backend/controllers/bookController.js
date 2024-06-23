@@ -43,8 +43,30 @@ exports.deleteBook = async (req, res) => {
       return res.status(400).json({ error: 'Book not found' });
     }
     res.status(200).json({ message: 'Book successfully deleted '});
-  } catch {
+  } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+exports.addBook = async (req, res) => {
+  try {
+    // if (!req.body.title ||!req.body.author ||!req.body.genre ||!req.body.description ||!req.body.price || !req.body.publishedYear) {
+    //   return res.status(400).json({ error: 'Missing required fields' });
+    // }
+    req.body = {
+        "title": "Example Book Title",
+        "author": "Author Name",
+        "genre": "Fiction",
+        "description": "This is a sample description of the book.",
+        "price": 19.99,
+        "publishedYear": 2021
+      }
+    const newBook = await Book.create(req.body);
+    res.status(201).json({ message: 'Book successfully added', book: newBook });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }
