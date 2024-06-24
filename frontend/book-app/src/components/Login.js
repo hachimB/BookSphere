@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import '../styles/Login.css';
 
 function Login() {
@@ -12,8 +13,8 @@ function Login() {
     try {
       const res = await axios.post('http://localhost:5000/api/users/login', { email, password });
       setMessage(res.data.message);
-      // Store the token in localStorage or context
-      localStorage.setItem('token', res.data.token);
+      Cookies.set('token', res.data.token, { expires: 1 }); // Store the token in a cookie, expires in 1 day
+      window.location.href = '/profile'; // Redirect to profile
     } catch (err) {
       setMessage(err.response.data.error);
     }

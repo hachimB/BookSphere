@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/Navbar.css'; // Corrected import statement
+import Cookies from 'js-cookie';
+import '../styles/Navbar.css';
 
-function Navbar() {
+function Navbar({ isLoggedIn }) {
+  const handleLogout = () => {
+    Cookies.remove('token');
+    window.location.href = '/';
+  };
+
   return (
     <nav>
       <ul>
@@ -10,8 +16,17 @@ function Navbar() {
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li><Link to="/books">Books</Link></li>
-        <li><Link to="/login">Login</Link></li>
-        <li><Link to="/signup">Signup</Link></li>
+        {!isLoggedIn ? (
+          <>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Signup</Link></li>
+          </>
+        ) : (
+          <>
+            <li><Link to="/profile">Profile</Link></li>
+            <li><button onClick={handleLogout}>Logout</button></li>
+          </>
+        )}
       </ul>
     </nav>
   );

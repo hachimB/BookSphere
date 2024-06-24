@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import '../styles/Signup.css';
 
 function Signup() {
@@ -11,8 +12,10 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/users', { name, email, password });
+      const res = await axios.post('http://localhost:5000/api/users/register', { name, email, password });
       setMessage('User registered successfully');
+      Cookies.set('token', res.data.token, { expires: 1 }); // Store the token in a cookie, expires in 1 day
+      window.location.href = '/profile'; // Redirect to profile
     } catch (err) {
       setMessage(err.response.data.error);
     }
