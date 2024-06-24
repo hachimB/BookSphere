@@ -7,8 +7,8 @@ const protect = require('../middleware/authMiddleware');
 
 
 // Define books routes
-router.route('/api/books').get(getAllBooks).post(addBook);
-router.route('/api/books/:id').get(getABook).delete(deleteBook).put(updateBook);
+router.route('/api/books').get(getAllBooks).post(protect, addBook);
+router.route('/api/books/:id').get(getABook).delete(protect, deleteBook).put(protect, updateBook);
 
 
 

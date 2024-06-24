@@ -19,7 +19,7 @@ const protect = async (req, res, next) => {
       }
     }
     if (!token) {
-      return res.status(401).json({ error: 'Not authorized' });
+      return res.status(401).json({ error: 'No token' });
     }
 }
 
