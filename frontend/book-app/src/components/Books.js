@@ -66,9 +66,18 @@ const Books = () => {
     setNewBook({ ...newBook, [name]: value });
   };
 
-  // Toggle edit mode for a book
+  // Toggle edit mode for a book and populate the form with the book's current data
   const toggleEditMode = (id) => {
-    setEditModeId(id === editModeId ? '' : id); // Toggle edit mode
+    const bookToEdit = books.find(book => book._id === id);
+    setNewBook({
+      title: bookToEdit.title,
+      author: bookToEdit.author,
+      genre: bookToEdit.genre,
+      description: bookToEdit.description,
+      publishedYear: bookToEdit.publishedYear,
+      price: bookToEdit.price
+    });
+    setEditModeId(id);
   };
 
   // Update book on the server
@@ -108,12 +117,53 @@ const Books = () => {
           <div key={book._id} className="book-item">
             {editModeId === book._id ? (
               <div className="book-edit">
-                <input type="text" name="title" value={newBook.title} onChange={handleInputChange} placeholder="Title" required />
-                <input type="text" name="author" value={newBook.author} onChange={handleInputChange} placeholder="Author" required />
-                <input type="text" name="genre" value={newBook.genre} onChange={handleInputChange} placeholder="Genre" required />
-                <textarea name="description" value={newBook.description} onChange={handleInputChange} placeholder="Description" required />
-                <input type="text" name="publishedYear" value={newBook.publishedYear} onChange={handleInputChange} placeholder="Published Year" required />
-                <input type="text" name="price" value={newBook.price} onChange={handleInputChange} placeholder="Price" required />
+                <input
+                  type="text"
+                  name="title"
+                  value={newBook.title}
+                  onChange={handleInputChange}
+                  placeholder="Title"
+                  required
+                />
+                <input
+                  type="text"
+                  name="author"
+                  value={newBook.author}
+                  onChange={handleInputChange}
+                  placeholder="Author"
+                  required
+                />
+                <input
+                  type="text"
+                  name="genre"
+                  value={newBook.genre}
+                  onChange={handleInputChange}
+                  placeholder="Genre"
+                  required
+                />
+                <textarea
+                  name="description"
+                  value={newBook.description}
+                  onChange={handleInputChange}
+                  placeholder="Description"
+                  required
+                />
+                <input
+                  type="text"
+                  name="publishedYear"
+                  value={newBook.publishedYear}
+                  onChange={handleInputChange}
+                  placeholder="Published Year"
+                  required
+                />
+                <input
+                  type="text"
+                  name="price"
+                  value={newBook.price}
+                  onChange={handleInputChange}
+                  placeholder="Price"
+                  required
+                />
                 <button onClick={() => updateBook(book._id)}>Save</button>
                 <button onClick={() => setEditModeId('')}>Cancel</button>
               </div>
@@ -135,12 +185,53 @@ const Books = () => {
       <div className="add-book-form">
         <h3>Add New Book</h3>
         <form onSubmit={(e) => { e.preventDefault(); addBook(); }}>
-          <input type="text" name="title" value={newBook.title} onChange={handleInputChange} placeholder="Title" required />
-          <input type="text" name="author" value={newBook.author} onChange={handleInputChange} placeholder="Author" required />
-          <input type="text" name="genre" value={newBook.genre} onChange={handleInputChange} placeholder="Genre" required />
-          <textarea name="description" value={newBook.description} onChange={handleInputChange} placeholder="Description" required />
-          <input type="text" name="publishedYear" value={newBook.publishedYear} onChange={handleInputChange} placeholder="Published Year" required />
-          <input type="text" name="price" value={newBook.price} onChange={handleInputChange} placeholder="Price" required />
+          <input
+            type="text"
+            name="title"
+            value={newBook.title}
+            onChange={handleInputChange}
+            placeholder="Title"
+            required
+          />
+          <input
+            type="text"
+            name="author"
+            value={newBook.author}
+            onChange={handleInputChange}
+            placeholder="Author"
+            required
+          />
+          <input
+            type="text"
+            name="genre"
+            value={newBook.genre}
+            onChange={handleInputChange}
+            placeholder="Genre"
+            required
+          />
+          <textarea
+            name="description"
+            value={newBook.description}
+            onChange={handleInputChange}
+            placeholder="Description"
+            required
+          />
+          <input
+            type="text"
+            name="publishedYear"
+            value={newBook.publishedYear}
+            onChange={handleInputChange}
+            placeholder="Published Year"
+            required
+          />
+          <input
+            type="text"
+            name="price"
+            value={newBook.price}
+            onChange={handleInputChange}
+            placeholder="Price"
+            required
+          />
           <button type="submit">Add Book</button>
         </form>
       </div>
