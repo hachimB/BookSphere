@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import '../styles/Books.css';
 
 const Books = () => {
@@ -31,7 +32,12 @@ const Books = () => {
   // Add a new book
   const addBook = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/api/books', newBook);
+      const token = Cookies.get('token');
+      const response = await axios.post('http://localhost:5000/api/books', newBook, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setBooks([...books, response.data.book]); // Update books state with new book
       clearForm();
     } catch (error) {
@@ -42,7 +48,12 @@ const Books = () => {
   // Delete a book
   const deleteBook = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/books/${id}`);
+      const token = Cookies.get('token');
+      await axios.delete(`http://localhost:5000/api/books/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setBooks(books.filter(book => book._id !== id)); // Update books state by removing deleted book
     } catch (error) {
       console.error('Error deleting book:', error);
@@ -63,9 +74,12 @@ const Books = () => {
   // Update book on the server
   const updateBook = async (id) => {
     try {
-      const bookToUpdate = books.find(book => book._id === id);
-      const response = await axios.put(`http://localhost:5000/api/books/${id}`, newBook);
-      
+      const token = Cookies.get('token');
+      const response = await axios.put(`http://localhost:5000/api/books/${id}`, newBook, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       // Replace the updated book in the state with the response data
       setBooks(books.map(book => (book._id === id ? response.data.book : book)));
       setEditModeId(''); // Exit edit mode after successful update
