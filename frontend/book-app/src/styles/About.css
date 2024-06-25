@@ -1,18 +1,72 @@
-/* About Styles */
 .about {
-    padding: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .about h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .about p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-  }
-  
+  padding: 50px 0;
+  background-color: #f9f9f9;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.about p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.about h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.col-lg-4,
+.col-md-4 {
+  flex: 0 0 calc(33.33% - 20px); /* Adjusted width calculation */
+  max-width: calc(33.33% - 20px); /* Adjusted max-width calculation */
+  margin-bottom: 20px; /* Added margin for spacing between columns */
+}
+
+.member-details {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.member-details h4 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.member-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.member-details ul li {
+  margin-bottom: 10px;
+}
+
+.member-details ul li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.member-details ul li a:hover {
+  text-decoration: underline;
+}
