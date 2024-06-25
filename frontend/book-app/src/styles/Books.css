@@ -1,18 +1,134 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Books Container */
 .books {
-    padding: 20px;
-  }
-  
-  .book-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .book-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    width: 200px;
-    background-color: #f9f9f9;
-  }
-  
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Section Titles */
+.books h2,
+.add-book-form h3 {
+  text-align: center;
+  color: #5a5a5a;
+  margin-bottom: 20px;
+}
+
+/* Book List */
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.book-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  flex: 0 0 30%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.book-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Book Details */
+.book-details h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.book-details p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.book-details button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.book-details button:hover {
+  background-color: #218838;
+}
+
+.book-details button:last-child {
+  background-color: #007bff;
+}
+
+.book-details button:last-child:hover {
+  background-color: #0056b3;
+}
+
+/* Book Edit Form */
+.book-edit {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-edit input,
+.book-edit textarea,
+.add-book-form input,
+.add-book-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.book-edit button,
+.add-book-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.book-edit button:hover,
+.add-book-form button:hover {
+  background-color: #0056b3;
+}
+
+.book-edit button:last-child {
+  background-color: #dc3545;
+}
+
+.book-edit button:last-child:hover {
+  background-color: #c82333;
+}
+
+/* Add Book Form */
+.add-book-form {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
