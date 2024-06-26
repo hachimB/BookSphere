@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import '../styles/Home.css';
+import booksphereLogo from '../images/booksphere-logo.jpg';
+
 
 function Home() {
   const [user, setUser] = useState(null);
@@ -33,6 +35,8 @@ function Home() {
     <div className="home-container">
       <header className="header">
         <div className="header-content">
+        <img src={booksphereLogo} alt="BookSphere Logo" className="logo" />
+        <div className="alx">alx</div> {/* Div with "alx" text */}
           <h1>Welcome to BookSphere</h1>
           <p>Your ultimate destination for exploring and discovering new books!</p>
           {user ? (
