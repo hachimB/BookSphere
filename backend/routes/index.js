@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const { getAllBooks, getABook, deleteBook, addBook, updateBook } = require('../controllers/bookController');
-const { registerUser, authenticateUser, getMe } = require('../controllers/userController');
+const { registerUser, authenticateUser, getMe, updateUser } = require('../controllers/userController');
 const protect = require('../middleware/authMiddleware');
 
 
@@ -16,7 +16,7 @@ router.route('/api/books/:id').get(getABook).delete(protect, deleteBook).put(pro
 router.route('/api/users').post(registerUser);
 router.route('/api/users/login').post(authenticateUser);
 router.route('/api/users/me').get(protect, getMe);
-
+router.route('/api/users/:id').put(protect, updateUser);
 
 
 module.exports = router;

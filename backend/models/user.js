@@ -15,7 +15,18 @@ const bookSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Please add your password'],
-  }
+  },
+
+  age: {
+    type: Number,
+    required: [true, 'Please add your age'],
+  },
+
+  gender: {
+    type: String,
+    required: [true, 'Please add your gender'],
+    enum: ['Male', 'Female'] 
+  },
 
 },
 {
