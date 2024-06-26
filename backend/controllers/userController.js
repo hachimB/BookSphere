@@ -70,15 +70,21 @@ exports.authenticateUser = async (req, res) => {
 
 
   exports.getMe = async (req, res) => {
-    try {
-      const user = await User.findById(req.user._id);
-      res.status(200).json({ _id: user.id, name: user.name, email: user.email});
-  
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
+  try {
+    const user = await User.findById(req.user._id);
+    res.status(200).json({ 
+      _id: user.id, 
+      name: user.name, 
+      email: user.email, 
+      age: user.age,
+      gender: user.gender
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
+}
+
 
   exports.updateUser = async (req, res) => {
     try {
