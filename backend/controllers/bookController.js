@@ -65,6 +65,11 @@ exports.deleteBook = async (req, res) => {
     if (!bookToDelete) {
       return res.status(400).json({ error: 'Book not found' });
     }
+
+    // Remove the book ID from the user's library
+    user.library = user.library.filter((item) => !item.bookId || item.bookId.toString() !== req.params.id);
+    await user.save();
+
     res.status(200).json({ message: 'Book successfully deleted '});
   } catch (error) {
       console.error(error);
@@ -83,7 +88,7 @@ exports.addBook = async (req, res) => {
     if (!user) {
       return res.status(400).json({ error: 'User not found' });
     }
-    user.library.push({bookID: newBook.id, title: newBook.title, author: newBook.author, genre: newBook.genre, description: newBook.description, publishedYear: newBook.publishedYear, price: newBook.price});
+    user.library.push({bookId: newBook._id, title: newBook.title, author: newBook.author, genre: newBook.genre, description: newBook.description, publishedYear: newBook.publishedYear, price: newBook.price});
     await user.save();
   } catch (error) {
     console.error(error);
@@ -96,39 +101,48 @@ exports.addBook = async (req, res) => {
 
 exports.updateBook = async (req, res) => {
   try {
-
-    // Check if the ID is valid or not
+    // Check if the ID is valid
     if (!isValidObjectId(req.params.id)) {
-      return res.status(400).json({ error: 'invalid ID'});
+      return res.status(400).json({ error: 'Invalid ID' });
     }
-    
-    // Find The book by the ID
+
+    // Find the book by ID
     const book = await Book.findById(req.params.id);
     if (!book) {
-      return res.status(400).json({ error: 'Book not found'});
+      return res.status(400).json({ error: 'Book not found' });
     }
 
     // Check if the user is the owner of the book
+    if (book.user.toString() !== req.user.id) {
+      return res.status(401).json({ error: 'Only the owner can update this book' });
+    }
+
+    // Update the book in the global space
+    const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+    // Find the user and update the book in their library
     const user = await User.findById(req.user.id);
-    if (!book.user) {
-      return res.status(400).json({ error: 'User not found' });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
 
-
-    // Verify that the user who want to update the book is the owner
-    if (book.user.toString() !== user.id) {
-      return res.status(401).json({ error: 'Only the owner can delete this book' });;
+    const bookIndex = user.library.findIndex(item => item.bookId && item.bookId.toString() === req.params.id);
+    if (bookIndex !== -1) {
+      user.library[bookIndex] = {
+        bookId: updatedBook._id,
+        title: updatedBook.title,
+        author: updatedBook.author,
+        genre: updatedBook.genre,
+        description: updatedBook.description,
+        publishedYear: updatedBook.publishedYear,
+        price: updatedBook.price,
+      };
+      await user.save();
     }
 
-    // Update the book
-    const bookToUpdate = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true, useFindAndModify: false });
-    if (!bookToUpdate) {
-      return res.status(400).json({ error: 'Book not found'});
-    }
-
-    res.status(200).json({ message: 'Book successfully updated', book: bookToUpdate })
+    res.status(200).json({ message: 'Book successfully updated', book: updatedBook });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error ' });
+    res.status(500).json({ error: 'Internal Server Error' });
   }
-}
+};

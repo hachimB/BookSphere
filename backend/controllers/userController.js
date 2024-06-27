@@ -122,7 +122,7 @@ exports.authenticateUser = async (req, res) => {
 
   exports.getUserLibrary = async (req, res) => {
     try {
-      const user = await User.findById(req.params.id);
+      const user = await User.findById(req.params.id).populate('library');
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
@@ -133,7 +133,7 @@ exports.authenticateUser = async (req, res) => {
     }
   }
 
-
+  
 
 
   const generateJWT = (id) => {
