@@ -14,12 +14,18 @@ const Books = () => {
     price: ''
   });
   const [editModeId, setEditModeId] = useState('');
+  const [genres, setGenres] = useState([]);
+  const [authors, setAuthors] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState('');
+  const [selectedAuthor, setSelectedAuthor] = useState('');
 
   // Fetch all books
   const fetchBooks = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/books');
       setBooks(response.data);
+      setGenres([...new Set(response.data.map(book => book.genre))]);
+      setAuthors([...new Set(response.data.map(book => book.author))]);
     } catch (error) {
       console.error('Error fetching books:', error);
     }
@@ -109,11 +115,33 @@ const Books = () => {
     });
   };
 
+  // Filter books based on selected genre and author
+  const filteredBooks = books.filter(book => {
+    return (
+      (selectedGenre === '' || book.genre === selectedGenre) &&
+      (selectedAuthor === '' || book.author === selectedAuthor)
+    );
+  });
+
   return (
     <div className="books">
       <h2>Books</h2>
+      <div className="filters">
+        <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
+          <option value="">All Genres</option>
+          {genres.map((genre, index) => (
+            <option key={index} value={genre}>{genre}</option>
+          ))}
+        </select>
+        <select value={selectedAuthor} onChange={(e) => setSelectedAuthor(e.target.value)}>
+          <option value="">All Authors</option>
+          {authors.map((author, index) => (
+            <option key={index} value={author}>{author}</option>
+          ))}
+        </select>
+      </div>
       <div className="book-list">
-        {books.map((book) => (
+        {filteredBooks.map((book) => (
           <div key={book._id} className="book-item">
             {editModeId === book._id ? (
               <div className="book-edit">
