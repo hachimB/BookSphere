@@ -69,6 +69,7 @@ exports.authenticateUser = async (req, res) => {
   }
 
 
+
   exports.getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
@@ -84,6 +85,8 @@ exports.authenticateUser = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+
 
 
   exports.updateUser = async (req, res) => {
@@ -114,6 +117,24 @@ exports.authenticateUser = async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+  
+
+  exports.getUserLibrary = async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+      res.status(200).json(user.library);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+
+
+
 
   const generateJWT = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {

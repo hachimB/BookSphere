@@ -79,12 +79,17 @@ exports.addBook = async (req, res) => {
   try {
     const newBook = await Book.create({ ...req.body, user: req.user.id });
     res.status(201).json({ message: 'Book successfully added', book: newBook });
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(400).json({ error: 'User not found' });
+    }
+    user.library.push({bookID: newBook.id, title: newBook.title, author: newBook.author, genre: newBook.genre, description: newBook.description, publishedYear: newBook.publishedYear, price: newBook.price});
+    await user.save();
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
-
 
 
 
@@ -120,6 +125,7 @@ exports.updateBook = async (req, res) => {
     if (!bookToUpdate) {
       return res.status(400).json({ error: 'Book not found'});
     }
+
     res.status(200).json({ message: 'Book successfully updated', book: bookToUpdate })
   } catch (error) {
     console.error(error);
