@@ -1,16 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const Library = () => {
   const [userBooks, setUserBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Use the provided token and user ID
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2N2M2YmNhMDM4MTk2MzYyZTlkM2YzOCIsImlhdCI6MTcxOTUwNDk3NSwiZXhwIjoxNzIyMDk2OTc1fQ.Ek6cxRxdrlW1ieaZqnxWM1Yc0n0hlzw7cLlJMWqDwUE";
-  const userId = "667c6bca038196362e9d3f38";
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
+    const fetchUserData = async () => {
+      const token = Cookies.get('token');
+      if (!token) {
+        return;
+      }
+
+      try {
+        const res = await axios.get('http://localhost:5000/api/users/me', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setUserId(res.data._id);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    if (!userId) return;
+
     const fetchUserLibrary = async () => {
+      const token = Cookies.get('token');
+      if (!token) {
+        return;
+      }
+
       try {
         const response = await axios.get(`http://localhost:5000/api/users/${userId}/library`, {
           headers: {
@@ -28,7 +55,7 @@ const Library = () => {
     };
 
     fetchUserLibrary();
-  }, []);
+  }, [userId]);
 
   if (loading) {
     return <div>Loading...</div>;
