@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import '../styles/Library.css';
 
 const Library = () => {
   const [userBooks, setUserBooks] = useState([]);

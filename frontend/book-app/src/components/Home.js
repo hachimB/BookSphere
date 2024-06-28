@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import '../styles/Home.css';
-import booksphereLogo from '../images/booksphere-logo.jpg';
+import booksphereLogo from '../images/hachim-logo-png.jpg';
 
 
 function Home() {
