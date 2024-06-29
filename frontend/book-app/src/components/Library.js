@@ -77,6 +77,9 @@ const Library = () => {
               <p><strong>Description:</strong> {book.description}</p>
               <p><strong>Published Year:</strong> {book.publishedYear}</p>
               <p><strong>Price:</strong> ${book.price}</p>
+              <a href={`http://localhost:3000/books/${book.bookId._id}/addchapter`} className="add-chapter-link">
+                Add Chapter
+              </a>
             </li>
           ))}
         </ul>
