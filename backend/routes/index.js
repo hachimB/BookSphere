@@ -1,7 +1,7 @@
 // routes/index.js
 const express = require('express');
 const router = express.Router();
-const { getAllBooks, getABook, deleteBook, addBook, updateBook, addChapter } = require('../controllers/bookController');
+const { getAllBooks, getABook, deleteBook, addBook, updateBook, addChapter, readBookWithChapters } = require('../controllers/bookController');
 const { registerUser, authenticateUser, getMe, updateUser, getUserLibrary } = require('../controllers/userController');
 const protect = require('../middleware/authMiddleware');
 
@@ -10,6 +10,7 @@ const protect = require('../middleware/authMiddleware');
 router.route('/api/books').get(getAllBooks).post(protect, addBook);
 router.route('/api/books/:id').get(getABook).delete(protect, deleteBook).put(protect, updateBook);
 router.route('/api/books/:id/chapters').post(protect, addChapter);
+router.route('/api/books/:id/read').get(readBookWithChapters);
 
 
 // Define users routes

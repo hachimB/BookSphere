@@ -32,6 +32,23 @@ exports.getABook = async (req, res) => {
   }
 };
 
+exports.readBookWithChapters = async (req, res) => {
+  try {
+    if (!isValidObjectId(req.params.id)) {
+      return res.status(400).json({ error: 'Invalid ID' });
+    }
+    const book = await Book.findById(req.params.id);
+    if (!book) {
+      return res.status(404).json({ error: 'Book not found' });
+    }
+    const { chapters } = book;
+    res.json({ book, chapters });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 exports.deleteBook = async (req, res) => {
   try {
     if (!isValidObjectId(req.params.id)) {
