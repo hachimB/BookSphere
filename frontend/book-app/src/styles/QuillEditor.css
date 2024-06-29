@@ -1,0 +1,22 @@
+/* src/styles/QuillEditor.css */
+
+.ql-container {
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .ql-editor {
+    min-height: 200px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .ql-toolbar {
+    border-radius: 0.5rem;
+  }
+  
+  .ql-container {
+    border-radius: 0.5rem;
+  }
+  

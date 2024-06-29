@@ -1,3 +1,5 @@
+// src/components/Navbar.js
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -16,6 +18,7 @@ function Navbar({ isLoggedIn }) {
         <li><Link to="/about">About</Link></li>
         <li><Link to="/library">Library</Link></li>
         <li><Link to="/books">Books</Link></li>
+        {isLoggedIn && <li><Link to="/addbook">Add Book</Link></li>}
         {!isLoggedIn ? (
           <>
             <li><Link to="/login">Login</Link></li>
