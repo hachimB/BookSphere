@@ -9,7 +9,8 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Profile from './components/Profile';
 import Library from './components/Library';
-import AddBook from './components/AddBook'; // Ensure this path is correct
+import AddBook from './components/AddBook';
+import AddChapter from './components/AddChapter';
 import Cookies from 'js-cookie';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
           {isLoggedIn && <Route path="/addbook" element={<AddBook />} />}
+          {isLoggedIn && <Route path="/books/:bookId/addchapter" element={<AddChapter />} />}
         </Routes>
       </div>
     </Router>

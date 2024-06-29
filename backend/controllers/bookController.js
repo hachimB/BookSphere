@@ -93,28 +93,22 @@ exports.addBook = async (req, res) => {
 };
 
 exports.addChapter = async (req, res) => {
-  try {
-    const book = await Book.findById(req.params.id);
-    if (!book) {
-      return res.status(404).json({ error: 'Book not found' });
-    }
-    if (book.user.toString() !== req.user.id) {
-      return res.status(401).json({ error: 'Only the owner can add a chapter to this book' });
-    }
-    
-    const { content } = req.body;
-    const chapterNumber = book.chapters.length + 1;
-    const newChapter = {
-      title: `Chapter ${chapterNumber}`,
-      content
-    };
+  const { id } = req.params;
+  const { title, number, content } = req.body;
 
+  try {
+    const book = await Book.findById(id);
+    if (!book) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+
+    const newChapter = { title, number, content };
     book.chapters.push(newChapter);
     await book.save();
-    res.status(200).json({ message: 'Chapter successfully added', book });
+
+    res.status(200).json({ message: 'Chapter added successfully', book });
   } catch (error) {
-    console.error("Error adding chapter:", error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ message: 'Error adding chapter', error });
   }
 };
 

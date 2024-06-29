@@ -1,9 +1,9 @@
 // models/book.js
-
 const mongoose = require('mongoose');
 
 const chapterSchema = new mongoose.Schema({
   title: String,
+  number: Number,
   content: String
 });
 
@@ -19,7 +19,7 @@ const bookSchema = new mongoose.Schema({
   description: String,
   publishedYear: Number,
   price: Number,
-  chapters: [chapterSchema], // Update here
+  chapters: [chapterSchema],
 },
 {
   timestamps: true,
