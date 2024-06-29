@@ -92,7 +92,6 @@ exports.addBook = async (req, res) => {
   }
 };
 
-
 exports.addChapter = async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
@@ -118,7 +117,6 @@ exports.addChapter = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-
 
 exports.updateBook = async (req, res) => {
   try {

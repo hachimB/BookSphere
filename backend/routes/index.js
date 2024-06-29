@@ -10,6 +10,7 @@ const protect = require('../middleware/authMiddleware');
 router.route('/api/books').get(getAllBooks).post(protect, addBook);
 router.route('/api/books/:id').get(getABook).delete(protect, deleteBook).put(protect, updateBook);
 router.route('/api/books/:id/chapters').post(protect, addChapter);
+router.post('/api/books/:id/chapters', protect, addChapter);
 
 
 // Define users routes
