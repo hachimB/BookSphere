@@ -94,10 +94,23 @@ exports.addBook = async (req, res) => {
 
 exports.addChapter = async (req, res) => {
   const { id } = req.params;
-  const { title, number, content } = req.body;
+  const { title, number, content } = req.body; // Ensure number is extracted
+
+  console.log(`Received ID: ${id}`); // Log the received ID
+
+  if (!isValidObjectId(id)) {
+    return res.status(400).json({ message: 'Invalid book ID format' });
+  }
+
+  // Validate the presence of required fields
+  if (!title || !number || !content) {
+    return res.status(400).json({ message: 'Title, number, and content are required' });
+  }
 
   try {
     const book = await Book.findById(id);
+    console.log(`Book found: ${book}`); // Log the found book
+
     if (!book) {
       return res.status(404).json({ message: 'Book not found' });
     }
@@ -108,6 +121,7 @@ exports.addChapter = async (req, res) => {
 
     res.status(200).json({ message: 'Chapter added successfully', book });
   } catch (error) {
+    console.error('Error adding chapter:', error); // Log any errors
     res.status(500).json({ message: 'Error adding chapter', error });
   }
 };

@@ -7,6 +7,7 @@ import QuillEditor from './QuillEditor';
 
 const AddChapter = () => {
   const { bookId } = useParams();
+  console.log('Book ID:', bookId);
   const [chapterTitle, setChapterTitle] = useState('');
   const [chapterNumber, setChapterNumber] = useState('');
   const [content, setContent] = useState('');
@@ -26,12 +27,16 @@ const AddChapter = () => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:5000/api/books/${bookId}/chapters`, chapterData, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
+        const response = await axios.post(
+            `http://localhost:5000/api/books/${bookId}/chapters`,
+            chapterData,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+              },
+            }
+          );
 
       if (response.status === 200) {
         console.log('Chapter added successfully:', response.data);
