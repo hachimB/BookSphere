@@ -43,7 +43,8 @@ BookSphere is a comprehensive web application that enables users to manage their
 5. Start the application:
     - cd frontend
     - cd book-app
-    - npm start
+    - npm start (in frontend directory)
+    - npm run server (in backend directory)
 
 ## Usage
 1. Navigate to http://localhost:5000 in your browser.
