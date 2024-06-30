@@ -82,13 +82,16 @@ exports.addBook = async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const { title, author, content } = req.body;
+    const { title, author, content, genre, description, publishedYear } = req.body;
 
     const newBook = await Book.create({
       user: req.user.id,
       title,
       author,
-      chapters: [{ title: 'Chapter 1', content }]
+      genre,
+      description,
+      publishedYear,
+      chapters: [{ title: 'Chapter 1', content }],
     });
 
     user.library.push({
@@ -98,7 +101,6 @@ exports.addBook = async (req, res) => {
       genre: newBook.genre,
       description: newBook.description,
       publishedYear: newBook.publishedYear,
-      price: newBook.price
     });
 
     await user.save();
@@ -169,7 +171,6 @@ exports.updateBook = async (req, res) => {
         genre: updatedBook.genre,
         description: updatedBook.description,
         publishedYear: updatedBook.publishedYear,
-        price: updatedBook.price,
       };
       await user.save();
     }

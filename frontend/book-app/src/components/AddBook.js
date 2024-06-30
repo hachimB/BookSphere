@@ -1,16 +1,25 @@
-// AddBook.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import QuillEditor from './QuillEditor';
 
 const AddBook = () => {
-  const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [content, setContent] = useState('');
+  const [genre, setGenre] = useState('');
+  const [description, setDescription] = useState('');
+  const [publishedYear, setPublishedYear] = useState('');
 
   const handleSubmit = async () => {
-    const bookData = { title, author, content };
+    const bookData = {
+      title,
+      author,
+      content,
+      genre,
+      description,
+      publishedYear,
+    };
 
     const token = Cookies.get('token');
 
@@ -27,11 +36,14 @@ const AddBook = () => {
         },
       });
 
-      if (response.status === 201 || response.status === 200) {
+      if (response.status === 201) {
         console.log('Book added successfully:', response.data);
         setTitle('');
         setAuthor('');
         setContent('');
+        setGenre('');
+        setDescription('');
+        setPublishedYear('');
       } else {
         console.error('Failed to add book:', response.data);
       }
@@ -43,18 +55,55 @@ const AddBook = () => {
   return (
     <div>
       <h1>Add a New Book</h1>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Author"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
-      />
+      <div>
+        <label>
+          Title:
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Author:
+          <input
+            type="text"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Genre:
+          <input
+            type="text"
+            value={genre}
+            onChange={(e) => setGenre(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Description:
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Published Year:
+          <input
+            type="number"
+            value={publishedYear}
+            onChange={(e) => setPublishedYear(e.target.value)}
+          />
+        </label>
+      </div>
       <QuillEditor content={content} setContent={setContent} />
       <button onClick={handleSubmit}>Submit</button>
     </div>

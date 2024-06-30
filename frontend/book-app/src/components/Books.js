@@ -14,7 +14,6 @@ const Books = () => {
     genre: '',
     description: '',
     publishedYear: '',
-    price: ''
   });
   const [editModeId, setEditModeId] = useState('');
   const [genres, setGenres] = useState([]);
@@ -84,7 +83,6 @@ const Books = () => {
       genre: bookToEdit.genre,
       description: bookToEdit.description,
       publishedYear: bookToEdit.publishedYear,
-      price: bookToEdit.price
     });
     setEditModeId(id);
   };
@@ -114,7 +112,6 @@ const Books = () => {
       genre: '',
       description: '',
       publishedYear: '',
-      price: ''
     });
   };
 
@@ -189,10 +186,7 @@ const Books = () => {
                 />
                 <input
                   type="text"
-                  name="price"
-                  value={newBook.price}
                   onChange={handleInputChange}
-                  placeholder="Price"
                   required
                 />
                 <button onClick={() => updateBook(book._id)}>Save</button>
@@ -205,7 +199,6 @@ const Books = () => {
                 <p><strong>Genre:</strong> {book.genre}</p>
                 <p><strong>Description:</strong> {book.description}</p>
                 <p><strong>Published Year:</strong> {book.publishedYear}</p>
-                <p><strong>Price:</strong> ${book.price}</p>
                 <Link to={`/books/${book._id}`} className="read-button">Read</Link> {/* Link to ReadBook component */}
                 <button onClick={() => deleteBook(book._id)}>Delete</button>
                 <button onClick={() => toggleEditMode(book._id)}>Update</button>
@@ -258,10 +251,7 @@ const Books = () => {
           />
           <input
             type="text"
-            name="price"
-            value={newBook.price}
             onChange={handleInputChange}
-            placeholder="Price"
             required
           />
           <button type="submit">Add Book</button>

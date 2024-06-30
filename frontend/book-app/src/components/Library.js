@@ -79,7 +79,6 @@ const Library = () => {
               <p><strong>Genre:</strong> {book.genre}</p>
               <p><strong>Description:</strong> {book.description}</p>
               <p><strong>Published Year:</strong> {book.publishedYear}</p>
-              <p><strong>Price:</strong> ${book.price}</p>
               <Link to={`/books/${book.bookId._id}`} className="read-button">Read</Link> {/* Link to ReadBook component */}
               <a href={`http://localhost:3000/books/${book.bookId._id}/addchapter`} className="add-chapter-link">
                 Add Chapter
