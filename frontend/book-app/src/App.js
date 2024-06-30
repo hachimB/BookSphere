@@ -12,6 +12,7 @@ import Profile from './components/Profile';
 import Library from './components/Library';
 import AddBook from './components/AddBook';
 import AddChapter from './components/AddChapter';
+import ReadBook from './components/ReadBook'
 import Cookies from 'js-cookie';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
           {isLoggedIn && <Route path="/addbook" element={<AddBook />} />}
+          <Route path="/books/:bookId" element={<ReadBook />} /> {/* New route for reading a book */}
           {isLoggedIn && <Route path="/books/:bookId/addchapter" element={<AddChapter />} />}
         </Routes>
       </div>
