@@ -1,6 +1,9 @@
+// src/components/Library.js
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom for navigation
 import '../styles/Library.css';
 
 const Library = () => {
@@ -77,6 +80,7 @@ const Library = () => {
               <p><strong>Description:</strong> {book.description}</p>
               <p><strong>Published Year:</strong> {book.publishedYear}</p>
               <p><strong>Price:</strong> ${book.price}</p>
+              <Link to={`/books/${book.bookId._id}`} className="read-button">Read</Link> {/* Link to ReadBook component */}
               <a href={`http://localhost:3000/books/${book.bookId._id}/addchapter`} className="add-chapter-link">
                 Add Chapter
               </a>

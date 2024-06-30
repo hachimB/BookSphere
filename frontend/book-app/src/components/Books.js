@@ -1,6 +1,9 @@
+// src/components/Books.js
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom for navigation
 import '../styles/Books.css';
 
 const Books = () => {
@@ -203,6 +206,7 @@ const Books = () => {
                 <p><strong>Description:</strong> {book.description}</p>
                 <p><strong>Published Year:</strong> {book.publishedYear}</p>
                 <p><strong>Price:</strong> ${book.price}</p>
+                <Link to={`/books/${book._id}`} className="read-button">Read</Link> {/* Link to ReadBook component */}
                 <button onClick={() => deleteBook(book._id)}>Delete</button>
                 <button onClick={() => toggleEditMode(book._id)}>Update</button>
               </div>
