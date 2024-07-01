@@ -22,7 +22,7 @@ function Profile() {
       }
 
       try {
-        const res = await axios.get('http://localhost:5000/api/users/me', {
+        const res = await axios.get('https://booksphere-backend-htz4.onrender.com/api/users/me', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -53,7 +53,7 @@ function Profile() {
     const token = Cookies.get('token');
 
     try {
-      const res = await axios.put(`http://localhost:5000/api/users/${user._id}`, updatedUser, {
+      const res = await axios.put(`https://booksphere-backend-htz4.onrender.com/api/users/${user._id}`, updatedUser, {
         headers: {
           Authorization: `Bearer ${token}`
         }
