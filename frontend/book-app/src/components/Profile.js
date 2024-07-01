@@ -118,6 +118,7 @@ function Profile() {
           <p>Age: {user.age}</p>
           <p>Gender: {user.gender}</p>
           <button onClick={() => setEditMode(true)}>Edit Profile</button>
+          <button class='library-btn'>Your Library</button>
         </>
       )}
     </div>

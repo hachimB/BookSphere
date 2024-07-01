@@ -32,11 +32,9 @@ function Home() {
   }, []);
 
   return (
-    <div className="home-container">
+    <div className="home-container">    
       <header className="header">
         <div className="header-content">
-        <img src={booksphereLogo} alt="BookSphere Logo" className="logo" />
-        <div className="alx">alx</div> {/* Div with "alx" text */}
           <h1>Welcome to BookSphere</h1>
           <p>Your ultimate destination for exploring and discovering new books!</p>
           {user ? (

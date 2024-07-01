@@ -122,25 +122,3 @@
 .btn:hover {
   background-color: #45a049;
 }
-
-/* Logo styles */
-.logo {
-  width: 150px;
-  height: auto;
-  position: absolute;
-  top: 19.1%; /* Adjust the top position */
-  left: 5%; /* Adjust the left position */
-  transform: translate(-50%, -50%);
-}
-
-.alx {
-  color: white;
-  background-color: black;
-  position: absolute;
-  padding: 10px;
-  top: 51px;
-  right: 10px;
-  font-size: 4rem;
-  font-weight: bold;
-  border: 2px solid #000;
-}

@@ -9,6 +9,10 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.profile-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 
 .profile-container h2 {
   text-align: center;
@@ -69,4 +73,10 @@
   .profile-container {
     padding: 20px;
   }
+}
+
+
+/* library button */
+button.library-btn {
+  float: right;
 }
