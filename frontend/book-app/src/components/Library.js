@@ -22,7 +22,7 @@ const Library = () => {
       }
 
       try {
-        const res = await axios.get('http://localhost:5000/api/users/me', {
+        const res = await axios.get('https://booksphere-backend-htz4.onrender.com/api/users/me', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -48,7 +48,7 @@ const Library = () => {
       }
 
       try {
-        const response = await axios.get(`http://localhost:5000/api/users/${userId}/library`, {
+        const response = await axios.get(`https://booksphere-backend-htz4.onrender.com/api/users/${userId}/library`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
