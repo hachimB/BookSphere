@@ -1,39 +1,43 @@
-// BookReader.js
-
-import React, { useState, useEffect } from 'react';
+// src/components/ReadBook.js
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-const BookReader = ({ bookId }) => {
-  const [book, setBook] = useState(null);
+const ReadBook = () => {
+  const { bookId } = useParams();
+  const [bookContent, setBookContent] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBook = async () => {
+    const fetchBookContent = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/books/${bookId}/read`);
-        setBook(response.data);
+        setBookContent(response.data);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching book:', error);
+        console.error('Error fetching book content:', error);
+        setLoading(false);
       }
     };
 
-    fetchBook();
+    fetchBookContent();
   }, [bookId]);
 
-  if (!book) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <h1>{book.book.title}</h1>
-      {book.chapters.map((chapter) => (
-        <div key={chapter._id}>
-          <h2>{chapter.title}</h2>
-          <div dangerouslySetInnerHTML={{ __html: chapter.content }}></div>
-        </div>
-      ))}
+    <div className="read-book">
+      <h2>{bookContent.title}</h2>
+      <p><strong>Author:</strong> {bookContent.author}</p>
+      <p><strong>Genre:</strong> {bookContent.genre}</p>
+      <p><strong>Description:</strong> {bookContent.description}</p>
+      <div className="book-content">
+        {bookContent.content}
+      </div>
     </div>
   );
 };
 
-export default BookReader;
+export default ReadBook;
