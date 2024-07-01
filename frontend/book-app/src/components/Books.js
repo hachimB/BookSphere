@@ -24,7 +24,7 @@ const Books = () => {
   // Fetch all books
   const fetchBooks = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/books');
+      const response = await axios.get('https://booksphere-backend-htz4.onrender.com/api/books');
       setBooks(response.data);
       setGenres([...new Set(response.data.map(book => book.genre))]);
       setAuthors([...new Set(response.data.map(book => book.author))]);
@@ -41,7 +41,7 @@ const Books = () => {
   const addBook = async () => {
     try {
       const token = Cookies.get('token');
-      const response = await axios.post('http://localhost:5000/api/books', newBook, {
+      const response = await axios.post('https://booksphere-backend-htz4.onrender.com/api/books', newBook, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -57,7 +57,7 @@ const Books = () => {
   const deleteBook = async (id) => {
     try {
       const token = Cookies.get('token');
-      await axios.delete(`http://localhost:5000/api/books/${id}`, {
+      await axios.delete(`https://booksphere-backend-htz4.onrender.com/api/books/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -91,7 +91,7 @@ const Books = () => {
   const updateBook = async (id) => {
     try {
       const token = Cookies.get('token');
-      const response = await axios.put(`http://localhost:5000/api/books/${id}`, newBook, {
+      const response = await axios.put(`https://booksphere-backend-htz4.onrender.com/api/books/${id}`, newBook, {
         headers: {
           Authorization: `Bearer ${token}`
         }
