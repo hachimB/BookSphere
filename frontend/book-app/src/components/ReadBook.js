@@ -14,7 +14,7 @@ function ReadBook() {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/books/${bookId}/read`);
+        const response = await axios.get(`https://booksphere-backend-htz4.onrender.com/api/books/${bookId}/read`);
         setBook(response.data.book);
         setChapters(response.data.chapters);
         setSelectedChapter(response.data.chapters.length > 0 ? response.data.chapters[0]._id : '');
