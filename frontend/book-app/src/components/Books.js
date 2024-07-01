@@ -207,56 +207,7 @@ const Books = () => {
           </div>
         ))}
       </div>
-      <div className="add-book-form">
-        <h3>Add New Book</h3>
-        <form onSubmit={(e) => { e.preventDefault(); addBook(); }}>
-          <input
-            type="text"
-            name="title"
-            value={newBook.title}
-            onChange={handleInputChange}
-            placeholder="Title"
-            required
-          />
-          <input
-            type="text"
-            name="author"
-            value={newBook.author}
-            onChange={handleInputChange}
-            placeholder="Author"
-            required
-          />
-          <input
-            type="text"
-            name="genre"
-            value={newBook.genre}
-            onChange={handleInputChange}
-            placeholder="Genre"
-            required
-          />
-          <textarea
-            name="description"
-            value={newBook.description}
-            onChange={handleInputChange}
-            placeholder="Description"
-            required
-          />
-          <input
-            type="text"
-            name="publishedYear"
-            value={newBook.publishedYear}
-            onChange={handleInputChange}
-            placeholder="Published Year"
-            required
-          />
-          <input
-            type="text"
-            onChange={handleInputChange}
-            required
-          />
-          <button type="submit">Add Book</button>
-        </form>
-      </div>
+      
     </div>
   );
 };
