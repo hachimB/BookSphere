@@ -16,7 +16,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/users', {
+      const res = await axios.post('https://booksphere-backend-htz4.onrender.com/api/users', {
         name,
         email,
         password,
