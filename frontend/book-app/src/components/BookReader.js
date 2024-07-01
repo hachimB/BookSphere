@@ -11,7 +11,7 @@ const ReadBook = () => {
   useEffect(() => {
     const fetchBookContent = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/books/${bookId}/read`);
+        const response = await axios.get(`https://booksphere-backend-htz4.onrender.com/api/books/${bookId}/read`);
         setBookContent(response.data);
         setLoading(false);
       } catch (error) {
