@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom for navigation
+import { Link } from 'react-router-dom';
 import '../styles/Library.css';
 
 const Library = () => {
@@ -49,7 +49,6 @@ const Library = () => {
           }
         });
 
-        console.log('API response:', response.data); // Debugging line
         setUserBooks(response.data);
         setLoading(false);
       } catch (error) {
@@ -68,25 +67,21 @@ const Library = () => {
   return (
     <div className="library">
       <h2>Your Library</h2>
-      {userBooks.length === 0 ? (
-        <p>No books in your library.</p>
-      ) : (
-        <ul>
-          {userBooks.map(book => (
-            <li key={book.bookId._id}>
-              <h3>{book.title}</h3>
-              <p><strong>Author:</strong> {book.author}</p>
-              <p><strong>Genre:</strong> {book.genre}</p>
-              <p><strong>Description:</strong> {book.description}</p>
-              <p><strong>Published Year:</strong> {book.publishedYear}</p>
-              <Link to={`/books/${book.bookId._id}`} className="read-button">Read</Link> {/* Link to ReadBook component */}
-              <a href={`http://localhost:3000/books/${book.bookId._id}/addchapter`} className="add-chapter-link">
-                Add Chapter
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="slides-container">
+        {userBooks.map(book => (
+          <div key={book.bookId._id} className="slide">
+            <h3>{book.title}</h3>
+            <p><strong>Author:</strong> {book.author}</p>
+            <p><strong>Genre:</strong> {book.genre}</p>
+            <p><strong>Description:</strong> {book.description}</p>
+            <p><strong>Published Year:</strong> {book.publishedYear}</p>
+            <div className="slide-buttons">
+              <Link to={`/books/${book.bookId._id}`} className="read-button">Read</Link>
+              <a href={`http://localhost:3000/books/${book.bookId._id}/addchapter`} className="add-chapter-link">Add Chapter</a>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

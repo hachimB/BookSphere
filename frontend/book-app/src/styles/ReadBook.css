@@ -1,87 +1,69 @@
-/* General styles */
+/* ReadBook.css */
+
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-  
-  /* Container styles */
-  .read-book-container {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  .book-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  .book-author {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .chapter-selection {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .chapter-selection label {
-    font-size: 1rem;
-    margin-right: 10px;
-  }
-  
-  .chapter-selection select {
-    padding: 5px 10px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: border-color 0.3s;
-  }
-  
-  .chapter-selection select:focus {
-    border-color: #126db8;
-  }
-  
-  .chapter-content {
-    padding: 20px;
-    border-top: 1px solid #ddd;
-  }
-  
-  .chapter-title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #126db8;
-    margin-bottom: 15px;
-  }
-  
-  .chapter-content > div {
-    line-height: 1.6;
-    color: #444;
-  }
-  
-  .chapter-content p {
-    margin-bottom: 10px;
-  }
-  
-  .chapter-content h4,
-  .chapter-content h5,
-  .chapter-content h6 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #126db8;
-  }
-  
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #a7a7a0b8;
+  color: #fff;
+}
+
+.read-book-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #1a1a1a; /* Darker black */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.book-title {
+  color: #ffd700; /* Gold color */
+  margin-bottom: 10px;
+}
+
+.book-author {
+  color: #ccc; /* Light grey color */
+  margin-bottom: 20px;
+}
+
+.chapter-selection {
+  margin-bottom: 20px;
+}
+
+.chapter-selection label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.chapter-selection select {
+  width: 100%;
+  max-width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  background-color: #333; /* Dark grey background */
+  color: #fff; /* White text */
+  border: none;
+  border-bottom: 2px solid #555; /* Slightly lighter grey border bottom */
+  border-radius: 4px;
+  outline: none; /* Remove default outline */
+  transition: border-color 0.3s ease;
+}
+
+.chapter-selection select:focus {
+  border-bottom-color: #ffd700; /* Gold border bottom color on focus */
+}
+
+.chapter-content {
+  margin-top: 20px;
+}
+
+.chapter-title {
+  color: #ffd700; /* Gold color */
+  margin-bottom: 10px;
+}
+
+.chapter-content div {
+  color: #fff; /* White text */
+  line-height: 1.6;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import QuillEditor from './QuillEditor';
+import '../styles/AddBook.css';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
@@ -53,7 +54,7 @@ const AddBook = () => {
   };
 
   return (
-    <div>
+    <div className="add-book-container">
       <h1>Add a New Book</h1>
       <div>
         <label>
@@ -62,6 +63,8 @@ const AddBook = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter title"
+            required
           />
         </label>
       </div>
@@ -72,6 +75,8 @@ const AddBook = () => {
             type="text"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
+            placeholder="Enter author"
+            required
           />
         </label>
       </div>
@@ -82,6 +87,7 @@ const AddBook = () => {
             type="text"
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
+            placeholder="Enter genre"
           />
         </label>
       </div>
@@ -91,6 +97,7 @@ const AddBook = () => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter description"
           />
         </label>
       </div>
@@ -101,6 +108,7 @@ const AddBook = () => {
             type="number"
             value={publishedYear}
             onChange={(e) => setPublishedYear(e.target.value)}
+            placeholder="Enter published year"
           />
         </label>
       </div>

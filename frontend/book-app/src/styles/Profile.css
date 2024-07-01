@@ -1,82 +1,81 @@
-/* Profile.css */
-
 .profile-container {
   max-width: 600px;
-  margin: auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.profile-container {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #5a5555;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgb(80 73 73 / 10%);
 }
 
-.profile-container h2 {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333333;
+.profile-form {
+  display: flex;
+  flex-direction: column;
 }
 
-.profile-container p {
-  font-size: 18px;
-  margin-bottom: 12px;
-  color: #666666;
+.profile-label {
+  margin-bottom: 10px;
 }
 
-.profile-container form {
+.profile-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.profile-buttons {
   margin-top: 20px;
 }
 
-.profile-container form input,
-.profile-container form select {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  font-size: 16px;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-}
-
-.profile-container form select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: #ffffff;
-  color: #333333;
-}
-
-.profile-container form button {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #007bff;
+.profile-buttons button {
+  padding: 10px 20px;
+  margin-right: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
 }
 
-.profile-container form button[type="button"] {
-  background-color: #6c757d;
+.profile-buttons button.profile-submit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.profile-buttons button.profile-cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.profile-details {
+  margin-top: 20px;
+}
+
+.profile-details h2 {
+  margin-bottom: 10px;
+}
+
+.profile-details p {
+  margin-bottom: 5px;
+}
+
+.profile-details button {
+  padding: 10px 20px;
   margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
-.profile-container form button:hover {
-  background-color: #0056b3;
+.profile-details button.profile-edit-btn {
+  background-color: #2196F3;
+  color: white;
 }
 
-@media (max-width: 768px) {
-  .profile-container {
-    padding: 20px;
-  }
-}
-
-
-/* library button */
-button.library-btn {
-  float: right;
+.profile-details button.profile-library-btn {
+  background-color: #FF9800;
+  color: white;
 }

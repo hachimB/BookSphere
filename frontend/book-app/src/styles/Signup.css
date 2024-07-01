@@ -1,50 +1,76 @@
+/* Signup.css */
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #0d0d0d; /* Slightly lighter black */
+  color: #fff; /* White text for better contrast */
+}
+
 .signup-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .signup-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .signup-container form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .signup-container input[type="text"],
-  .signup-container input[type="email"],
-  .signup-container input[type="password"],
-  .signup-container button {
-    margin-bottom: 10px;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  .signup-container button {
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .signup-container button:hover {
-    background-color: #005580;
-  }
-  
-  .message {
-    margin-top: 10px;
-    padding: 10px;
-    text-align: center;
-    background-color: #dff0d8;
-    color: #3c763d;
-    border: 1px solid #d6e9c6;
-    border-radius: 5px;
-  }
-  
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #1a1a1a; /* Darker black */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.signup-container h2 {
+  text-align: center;
+  color: #ffd700; /* Gold color */
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+input[type="number"] {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #333; /* Dark grey background */
+  color: #fff; /* White text */
+  border: none;
+  border-bottom: 2px solid #555; /* Slightly lighter grey border bottom */
+  border-radius: 4px;
+  outline: none; /* Remove default outline */
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+input[type="number"]:focus {
+  border-bottom-color: #ffd700; /* Gold border bottom color on focus */
+}
+
+button[type="submit"] {
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #ffd700; /* Gold background */
+  color: #000; /* Black text */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #ffc107; /* Darker gold on hover */
+}
+
+.message {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f44336; /* Red background for error messages */
+  color: #fff; /* White text */
+  border-radius: 4px;
+}

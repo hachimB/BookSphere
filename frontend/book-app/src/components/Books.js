@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom for navigation
+import { Link } from 'react-router-dom';
 import '../styles/Books.css';
 
 const Books = () => {
@@ -142,72 +142,70 @@ const Books = () => {
       </div>
       <div className="book-list">
         {filteredBooks.map((book) => (
-          <div key={book._id} className="book-item">
-            {editModeId === book._id ? (
-              <div className="book-edit">
-                <input
-                  type="text"
-                  name="title"
-                  value={newBook.title}
-                  onChange={handleInputChange}
-                  placeholder="Title"
-                  required
-                />
-                <input
-                  type="text"
-                  name="author"
-                  value={newBook.author}
-                  onChange={handleInputChange}
-                  placeholder="Author"
-                  required
-                />
-                <input
-                  type="text"
-                  name="genre"
-                  value={newBook.genre}
-                  onChange={handleInputChange}
-                  placeholder="Genre"
-                  required
-                />
-                <textarea
-                  name="description"
-                  value={newBook.description}
-                  onChange={handleInputChange}
-                  placeholder="Description"
-                  required
-                />
-                <input
-                  type="text"
-                  name="publishedYear"
-                  value={newBook.publishedYear}
-                  onChange={handleInputChange}
-                  placeholder="Published Year"
-                  required
-                />
-                <input
-                  type="text"
-                  onChange={handleInputChange}
-                  required
-                />
-                <button onClick={() => updateBook(book._id)}>Save</button>
-                <button onClick={() => setEditModeId('')}>Cancel</button>
-              </div>
-            ) : (
-              <div className="book-details">
-                <h3>{book.title}</h3>
-                <p><strong>Author:</strong> {book.author}</p>
-                <p><strong>Genre:</strong> {book.genre}</p>
-                <p><strong>Description:</strong> {book.description}</p>
-                <p><strong>Published Year:</strong> {book.publishedYear}</p>
-                <Link to={`/books/${book._id}`} className="read-button">Read</Link> {/* Link to ReadBook component */}
-                <button onClick={() => deleteBook(book._id)}>Delete</button>
-                <button onClick={() => toggleEditMode(book._id)}>Update</button>
-              </div>
-            )}
+          <div key={book._id} className="book-card">
+            <div className="book-details">
+              <h3>{book.title}</h3>
+              <p><strong>Author:</strong> {book.author}</p>
+              <p><strong>Genre:</strong> {book.genre}</p>
+              <p className="description"><strong>Description:</strong> {book.description}</p>
+              <p><strong>Published Year:</strong> {book.publishedYear}</p>
+            </div>
+            <div className="book-actions">
+              {editModeId === book._id ? (
+                <div className="book-edit">
+                  <input
+                    type="text"
+                    name="title"
+                    value={newBook.title}
+                    onChange={handleInputChange}
+                    placeholder="Title"
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="author"
+                    value={newBook.author}
+                    onChange={handleInputChange}
+                    placeholder="Author"
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="genre"
+                    value={newBook.genre}
+                    onChange={handleInputChange}
+                    placeholder="Genre"
+                    required
+                  />
+                  <textarea
+                    name="description"
+                    value={newBook.description}
+                    onChange={handleInputChange}
+                    placeholder="Description"
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="publishedYear"
+                    value={newBook.publishedYear}
+                    onChange={handleInputChange}
+                    placeholder="Published Year"
+                    required
+                  />
+                  <button onClick={() => updateBook(book._id)}>Save</button>
+                  <button onClick={() => setEditModeId('')}>Cancel</button>
+                </div>
+              ) : (
+                <>
+                  <Link to={`/books/${book._id}`} className="read-button">Read</Link>
+                  <button onClick={() => deleteBook(book._id)}>Delete</button>
+                  <button onClick={() => toggleEditMode(book._id)}>Update</button>
+                </>
+              )}
+            </div>
           </div>
         ))}
       </div>
-      
     </div>
   );
 };

@@ -1,0 +1,63 @@
+/* src/styles/AddChapter.css */
+
+.add-chapter-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #cec3c3;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-chapter-container h1 {
+    color: white;
+    text-align: center;
+}
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    color: black;
+    margin-bottom: 5px;
+}
+  
+  .form-group input[type="text"],
+  .form-group input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid gold;
+    border-radius: 4px;
+  }
+  
+  .form-group input[type="text"]:focus,
+  .form-group input[type="number"]:focus {
+    outline: none;
+    border-color: darkgoldenrod;
+  }
+  
+  .form-group label,
+  .form-group input,
+  .form-group textarea {
+    display: block;
+  }
+  
+  .submit-button {
+    background-color: gold;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: darkgoldenrod;
+    color: black;
+  }
+  

@@ -1,72 +1,91 @@
+/* About.css */
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text for better contrast */
+}
+
 .about {
-  padding: 50px 0;
-  background-color: #f9f9f9;
+  padding: 40px 20px;
+  background-color: #111; /* Darker black */
 }
 
 .about-content {
   max-width: 800px;
   margin: 0 auto;
-  padding: 0 20px;
   text-align: center;
 }
 
-.about h2 {
-  font-size: 2.5rem;
+.about-content h2 {
+  color: #ffd700; /* Gold color */
   margin-bottom: 20px;
 }
 
-.about p {
+.about-content p {
   font-size: 1.1rem;
   line-height: 1.6;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-.about h3 {
-  font-size: 2rem;
-  margin-bottom: 15px;
+.about-content h3 {
+  color: #ffd700; /* Gold color */
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 30px;
 }
 
 .col-lg-4,
 .col-md-4 {
-  flex: 0 0 calc(33.33% - 20px); /* Adjusted width calculation */
-  max-width: calc(33.33% - 20px); /* Adjusted max-width calculation */
-  margin-bottom: 20px; /* Added margin for spacing between columns */
+  flex: 1 1 calc(33% - 20px);
+  margin: 10px;
+  max-width: calc(33% - 20px);
 }
 
 .member-details {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: #222; /* Slightly lighter black */
   padding: 20px;
-  text-align: left;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
 }
 
 .member-details h4 {
-  font-size: 1.5rem;
+  color: #ffd700; /* Gold color */
   margin-bottom: 10px;
 }
 
 .member-details ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
 }
 
-.member-details ul li {
-  margin-bottom: 10px;
+.member-details li {
+  margin: 5px 0;
 }
 
-.member-details ul li a {
-  color: #007bff;
+.member-details a {
+  color: #ffd700; /* Gold color */
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.member-details ul li a:hover {
-  text-decoration: underline;
+.member-details a:hover {
+  color: #fff; /* White color on hover */
+}
+
+.about-content a {
+  color: #ffd700; /* Gold color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.about-content a:hover {
+  color: #fff; /* White color on hover */
 }

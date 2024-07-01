@@ -1,94 +1,64 @@
-/* Library.css */
+/* src/styles/Library.css */
 
-/* Container styling */
 .library {
-    padding: 20px;
-    background-color: #f4f4f9;
-    min-height: 100vh;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  /* Heading styling */
-  .library h2 {
-    font-size: 2em;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Empty library message styling */
-  .library p {
-    text-align: center;
-    font-size: 1.2em;
-    color: #666;
-  }
-  
-  /* List styling */
-  .library ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  /* Book item styling */
-  .library li {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  
-  /* Book item hover effect */
-  .library li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Book title styling */
-  .library h3 {
-    margin: 0;
-    font-size: 1.5em;
-    color: #1a1a1a;
-  }
-  
-  /* Book details styling */
-  .library p strong {
-    color: #1a1a1a;
-  }
-  
-  .library p {
-    margin: 8px 0;
-    font-size: 1em;
-    color: #555;
-  }
-  
-  /* Price styling */
-  .library p strong {
-    font-weight: bold;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 600px) {
-    .library {
-      padding: 10px;
-    }
-  
-    .library h2 {
-      font-size: 1.5em;
-    }
-  
-    .library li {
-      padding: 15px;
-    }
-  
-    .library h3 {
-      font-size: 1.2em;
-    }
-  
-    .library p {
-      font-size: 0.9em;
-    }
-  }
-  
+  color: gold;
+  background-color: #cec3c3;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.library h2 {
+  color: black;
+  text-align: center;
+}
+
+.slides-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding-bottom: 20px;
+  align-content: space-around;
+  justify-content: space-between;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 300px;
+  padding: 15px;
+  border: 1px solid #8e8d86;
+  border-radius: 8px;
+  background-color: #04124a85;
+}
+
+.slide h3 {
+  color: black;
+  margin-bottom: 5px;
+}
+
+.slide p {
+  color: white;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slide-buttons {
+  margin-top: 10px;
+}
+
+.read-button, .add-chapter-link {
+  color: black;
+  background-color: #787e79a3;
+  border: none;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.read-button:hover, .add-chapter-link:hover {
+  background-color: darkgoldenrod;
+  color: black;
+}

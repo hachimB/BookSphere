@@ -9,8 +9,8 @@ function Profile() {
   const [updatedUser, setUpdatedUser] = useState({
     name: '',
     email: '',
-    age: '',  // Ensure age is initialized
-    gender: ''  // Ensure gender is initialized
+    age: '',
+    gender: ''
   });
 
   useEffect(() => {
@@ -31,8 +31,8 @@ function Profile() {
         setUpdatedUser({
           name: res.data.name,
           email: res.data.email,
-          age: res.data.age,  // Set age in updatedUser state
-          gender: res.data.gender  // Set gender in updatedUser state
+          age: res.data.age,
+          gender: res.data.gender
         });
       } catch (err) {
         console.error('Error fetching user:', err);
@@ -58,8 +58,8 @@ function Profile() {
           Authorization: `Bearer ${token}`
         }
       });
-      setUser(res.data); // Update user state with the updated user data
-      setEditMode(false); // Exit edit mode after successful update
+      setUser(res.data);
+      setEditMode(false);
     } catch (err) {
       console.error('Error updating user:', err);
     }
@@ -72,54 +72,72 @@ function Profile() {
   return (
     <div className="profile-container">
       {editMode ? (
-        <form onSubmit={handleUpdate}>
-          <input
-            type="text"
-            name="name"
-            value={updatedUser.name}
-            onChange={handleInputChange}
-            placeholder="Name"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            value={updatedUser.email}
-            onChange={handleInputChange}
-            placeholder="Email"
-            required
-          />
-          <input
-            type="number"
-            name="age"
-            value={updatedUser.age}
-            onChange={handleInputChange}
-            placeholder="Age"
-            required
-          />
-          <select
-            name="gender"
-            value={updatedUser.gender}
-            onChange={handleInputChange}
-            required
-          >
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-          <button type="submit">Save</button>
-          <button type="button" onClick={() => setEditMode(false)}>Cancel</button>
+        <form onSubmit={handleUpdate} className="profile-form">
+          <label className="profile-label">
+            Name:
+            <input
+              type="text"
+              name="name"
+              value={updatedUser.name}
+              onChange={handleInputChange}
+              className="profile-input"
+              placeholder="Name"
+              required
+            />
+          </label>
+          <label className="profile-label">
+            Email:
+            <input
+              type="email"
+              name="email"
+              value={updatedUser.email}
+              onChange={handleInputChange}
+              className="profile-input"
+              placeholder="Email"
+              required
+            />
+          </label>
+          <label className="profile-label">
+            Age:
+            <input
+              type="number"
+              name="age"
+              value={updatedUser.age}
+              onChange={handleInputChange}
+              className="profile-input"
+              placeholder="Age"
+              required
+            />
+          </label>
+          <label className="profile-label">
+            Gender:
+            <select
+              name="gender"
+              value={updatedUser.gender}
+              onChange={handleInputChange}
+              className="profile-input"
+              required
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </label>
+          <div className="profile-buttons">
+            <button type="submit" className="profile-submit-btn">Save</button>
+            <button type="button" onClick={() => setEditMode(false)} className="profile-cancel-btn">Cancel</button>
+          </div>
         </form>
       ) : (
-        <>
+        <div className="profile-details">
           <h2>User Profile</h2>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-          <p>Age: {user.age}</p>
-          <p>Gender: {user.gender}</p>
-          <button onClick={() => setEditMode(true)}>Edit Profile</button>
-          <button class='library-btn'>Your Library</button>
-        </>
+          <p><strong>Name:</strong> {user.name}</p>
+          <p><strong>Email:</strong> {user.email}</p>
+          <p><strong>Age:</strong> {user.age}</p>
+          <p><strong>Gender:</strong> {user.gender}</p>
+          <button onClick={() => setEditMode(true)} className="profile-edit-btn">Edit Profile</button>
+          <button className="profile-library-btn">Your Library</button>
+        </div>
       )}
     </div>
   );
