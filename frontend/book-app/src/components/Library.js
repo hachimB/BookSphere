@@ -89,7 +89,7 @@ const Library = () => {
               <p><strong>Published Year:</strong> {book.publishedYear}</p>
               <div className="slide-buttons">
                 <Link to={`/books/${book.bookId._id}`} className="read-button">Read</Link>
-                <a href={`http://localhost:3000/books/${book.bookId._id}/addchapter`} className="add-chapter-link">Add Chapter</a>
+                <a href={`https://booksphere-frontend.onrender.com/books/${book.bookId._id}/addchapter`} className="add-chapter-link">Add Chapter</a>
               </div>
             </div>
           ))}
