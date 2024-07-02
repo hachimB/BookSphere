@@ -1,9 +1,7 @@
-// src/components/Books.js
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom for navigation
+import { Link } from 'react-router-dom';
 import '../styles/Books.css';
 
 const Books = () => {
@@ -21,13 +19,21 @@ const Books = () => {
   const [selectedGenre, setSelectedGenre] = useState('');
   const [selectedAuthor, setSelectedAuthor] = useState('');
 
+  const normalizeString = (str) => str.trim().toLowerCase();
+
   // Fetch all books
   const fetchBooks = async () => {
     try {
       const response = await axios.get('https://booksphere-backend-htz4.onrender.com/api/books');
-      setBooks(response.data);
-      setGenres([...new Set(response.data.map(book => book.genre))]);
-      setAuthors([...new Set(response.data.map(book => book.author))]);
+      const booksData = response.data;
+
+      setBooks(booksData);
+
+      const uniqueGenres = [...new Set(booksData.map(book => normalizeString(book.genre)))];
+      const uniqueAuthors = [...new Set(booksData.map(book => normalizeString(book.author)))];
+
+      setGenres(uniqueGenres);
+      setAuthors(uniqueAuthors);
     } catch (error) {
       console.error('Error fetching books:', error);
     }
@@ -118,8 +124,8 @@ const Books = () => {
   // Filter books based on selected genre and author
   const filteredBooks = books.filter(book => {
     return (
-      (selectedGenre === '' || book.genre === selectedGenre) &&
-      (selectedAuthor === '' || book.author === selectedAuthor)
+      (selectedGenre === '' || normalizeString(book.genre) === selectedGenre) &&
+      (selectedAuthor === '' || normalizeString(book.author) === selectedAuthor)
     );
   });
 
@@ -207,7 +213,6 @@ const Books = () => {
           </div>
         ))}
       </div>
-      
     </div>
   );
 };
